@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bright RP - Loading</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #080814;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(240,192,64,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240,192,64,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+  }
+
+  .bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240,192,64,0.06) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    max-width: 680px;
+    padding: 0 30px;
+  }
+
+  .logo-ring {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid rgba(240,192,64,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    position: relative;
+    animation: spin 8s linear infinite;
+  }
+
+  .logo-ring::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #f0c040;
+    animation: spin 1.5s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .logo-inner {
+    animation: spin-reverse 8s linear infinite;
+    font-size: 28px;
+    font-weight: 800;
+    color: #f0c040;
+    letter-spacing: -1px;
+  }
+
+  @keyframes spin-reverse {
+    to { transform: rotate(-360deg); }
+  }
+
+  .server-name {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .server-name .bright { color: #f0c040; }
+  .server-name .rp { color: #ffffff; }
+
+  .subtitle {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 8px;
+  }
+
+  .owner-tag {
+    display: inline-block;
+    font-size: 11px;
+    color: #f0c040;
+    background: rgba(240,192,64,0.08);
+    border: 1px solid rgba(240,192,64,0.2);
+    padding: 3px 14px;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .info-item {
+    text-align: center;
+  }
+
+  .info-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 3px;
+  }
+
+  .info-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ccc;
+  }
+
+  .info-value.gold { color: #f0c040; }
+
+  .divider {
+    width: 1px;
+    height: 30px;
+    background: #1e1e30;
+    align-self: center;
+  }
+
+  .progress-wrap {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #444;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .progress-bar-bg {
+    width: 100%;
+    height: 4px;
+    background: #111125;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid #1a1a30;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #b38a20, #f0c040);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.4s ease;
+    position: relative;
+  }
+
+  .progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f0c040;
+    box-shadow: 0 0 8px #f0c040;
+  }
+
+  .status-text {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    min-height: 16px;
+    transition: color 0.3s;
+  }
+
+  .file-text {
+    font-size: 10px;
+    color: #333;
+    margin-top: 4px;
+    min-height: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dots span {
+    animation: blink 1.4s infinite;
+    opacity: 0;
+  }
+  .dots span:nth-child(2) { animation-delay: 0.2s; }
+  .dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes blink {
+    0%, 80%, 100% { opacity: 0; }
+    40% { opacity: 1; }
+  }
+
+  .corner {
+    position: absolute;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #222;
+    text-transform: uppercase;
+  }
+  .corner.tl { top: 16px; left: 20px; }
+  .corner.tr { top: 16px; right: 20px; }
+  .corner.bl { bottom: 16px; left: 20px; }
+  .corner.br { bottom: 16px; right: 20px; }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<div class="corner tl">Bright RP</div>
+<div class="corner tr" id="corner-map">Downtown</div>
+<div class="corner bl">Owner: John John</div>
+<div class="corner br" id="corner-players">32 Slots</div>
+
+<div class="container">
+
+  <div class="logo-ring">
+    <div class="logo-inner">B</div>
+  </div>
+
+  <div class="server-name">
+    <span class="bright">Bright</span><span class="rp"> RP</span>
+  </div>
+  <div class="subtitle">Downtown Roleplay Experience</div>
+  <div class="owner-tag">Owner: John John</div>
+
+  <div class="info-row">
+    <div class="info-item">
+      <div class="info-label">Map</div>
+      <div class="info-value gold" id="info-map">Downtown</div>
+    </div>
+    <div class="divider"></div>
+    <div class="info-item">
+      <div class="info-label">Gamemode</div>
+      <div class="info-value">DarkRP</div>
+    </div>
+    <div class="divider"></div>
+    <div class="info-item">
+      <div class="info-label">Players</div>
+      <div class="info-value" id="info-players">32 Slots</div>
+    </div>
+    <div class="divider"></div>
+    <div class="info-item">
+      <div class="info-label">Status</div>
+      <div class="info-value gold">Online</div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-labels">
+      <span>Loading<span class="dots"><span>.</span><span>.</span><span>.</span></span></span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="status-text" id="status-text">Connecting to server...</div>
+  <div class="file-text" id="file-text">&nbsp;</div>
+
+</div>
+
+<script>
+  var progress = 0;
+  var targetProgress = 0;
+  var animFrame;
+
+  function animateProgress() {
+    if (progress < targetProgress) {
+      progress = Math.min(progress + 0.8, targetProgress);
+      var pct = Math.round(progress);
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('progress-pct').innerText = pct + '%';
+    }
+    animFrame = requestAnimationFrame(animateProgress);
+  }
+  animateProgress();
+
+  // Fake progress for demo feel
+  var fakeSteps = [
+    { pct: 10, delay: 300, status: 'Connecting to server...' },
+    { pct: 25, delay: 800, status: 'Receiving server info...' },
+    { pct: 45, delay: 1500, status: 'Downloading resources...' },
+    { pct: 70, delay: 2500, status: 'Loading content...' },
+    { pct: 90, delay: 3500, status: 'Almost ready...' },
+  ];
+
+  fakeSteps.forEach(function(step) {
+    setTimeout(function() {
+      targetProgress = step.pct;
+      document.getElementById('status-text').innerText = step.status;
+    }, step.delay);
+  });
+
+  window.GameDetails = function(servername, serverurl, mapname, maxplayers, steamid, gamemode) {
+    if (mapname) {
+      document.getElementById('info-map').innerText = mapname;
+      document.getElementById('corner-map').innerText = mapname;
+    }
+    if (maxplayers) {
+      document.getElementById('info-players').innerText = maxplayers + ' Slots';
+      document.getElementById('corner-players').innerText = maxplayers + ' Slots';
+    }
+  };
+
+  window.SetStatusChanged = function(status) {
+    document.getElementById('status-text').innerText = status;
+    if (status === 'Sending client info...') targetProgress = 60;
+    if (status === 'Receiving client info...') targetProgress = 80;
+    if (status === 'Loading...') targetProgress = 95;
+  };
+
+  window.DownloadingFile = function(filename) {
+    document.getElementById('file-text').innerText = filename || '';
+    if (targetProgress < 85) targetProgress = Math.min(targetProgress + 1, 85);
+  };
+</script>
+</body>
+</html>
