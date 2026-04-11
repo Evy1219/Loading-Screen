@@ -19,6 +19,7 @@
     position: relative;
   }
 
+  /* ── Background ── */
   .bg-grid {
     position: absolute;
     inset: 0;
@@ -31,42 +32,58 @@
 
   .bg-glow {
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(240,192,64,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(240,192,64,0.05) 0%, transparent 70%);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 0;
-    animation: pulse 4s ease-in-out infinite;
+    animation: pulse 5s ease-in-out infinite;
   }
 
   @keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+    0%, 100% { transform: translate(-50%,-50%) scale(1);   opacity: 1;   }
+    50%       { transform: translate(-50%,-50%) scale(1.1); opacity: 0.5; }
   }
 
+  /* ── Corner labels ── */
+  .corner {
+    position: absolute;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #2a2a40;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .corner.tl { top: 18px; left: 22px; }
+  .corner.tr { top: 18px; right: 22px; }
+  .corner.bl { bottom: 18px; left: 22px; }
+  .corner.br { bottom: 18px; right: 22px; }
+
+  /* ── Main container ── */
   .container {
     position: relative;
     z-index: 1;
     text-align: center;
     width: 100%;
-    max-width: 680px;
-    padding: 0 30px;
+    max-width: 700px;
+    padding: 0 32px;
   }
 
+  /* ── Logo ring ── */
   .logo-ring {
-    width: 90px;
-    height: 90px;
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
-    border: 2px solid rgba(240,192,64,0.2);
+    border: 2px solid rgba(240,192,64,0.15);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 24px;
+    margin: 0 auto 26px;
     position: relative;
-    animation: spin 8s linear infinite;
+    animation: spin-slow 10s linear infinite;
   }
 
   .logo-ring::before {
@@ -76,102 +93,95 @@
     border-radius: 50%;
     border: 2px solid transparent;
     border-top-color: #f0c040;
-    animation: spin 1.5s linear infinite;
+    border-right-color: rgba(240,192,64,0.3);
+    animation: spin-fast 1.8s linear infinite;
   }
 
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
+  @keyframes spin-slow { to { transform: rotate(360deg);  } }
+  @keyframes spin-fast { to { transform: rotate(360deg);  } }
 
   .logo-inner {
-    animation: spin-reverse 8s linear infinite;
-    font-size: 28px;
-    font-weight: 800;
+    animation: spin-slow 10s linear infinite reverse;
+    font-size: 30px;
+    font-weight: 900;
     color: #f0c040;
     letter-spacing: -1px;
+    user-select: none;
   }
 
-  @keyframes spin-reverse {
-    to { transform: rotate(-360deg); }
-  }
-
+  /* ── Title ── */
   .server-name {
-    font-size: 52px;
+    font-size: 54px;
     font-weight: 800;
-    letter-spacing: 6px;
+    letter-spacing: 7px;
     text-transform: uppercase;
     line-height: 1;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
-
   .server-name .bright { color: #f0c040; }
-  .server-name .rp { color: #ffffff; }
+  .server-name .rp     { color: #ffffff; }
 
   .subtitle {
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #555;
-    margin-bottom: 8px;
+    color: #444;
+    margin-bottom: 10px;
   }
 
   .owner-tag {
     display: inline-block;
-    font-size: 11px;
+    font-size: 10px;
     color: #f0c040;
-    background: rgba(240,192,64,0.08);
-    border: 1px solid rgba(240,192,64,0.2);
-    padding: 3px 14px;
+    background: rgba(240,192,64,0.07);
+    border: 1px solid rgba(240,192,64,0.18);
+    padding: 4px 16px;
     border-radius: 20px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 40px;
+    margin-bottom: 36px;
   }
 
+  /* ── Info row ── */
   .info-row {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin-bottom: 40px;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 38px;
   }
 
-  .info-item {
-    text-align: center;
-  }
+  .info-item { text-align: center; }
 
   .info-label {
     font-size: 9px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #444;
-    margin-bottom: 3px;
+    color: #383848;
+    margin-bottom: 4px;
   }
 
   .info-value {
     font-size: 13px;
     font-weight: 600;
-    color: #ccc;
+    color: #bbb;
   }
-
   .info-value.gold { color: #f0c040; }
 
   .divider {
     width: 1px;
-    height: 30px;
-    background: #1e1e30;
-    align-self: center;
+    height: 28px;
+    background: #161628;
   }
 
-  .progress-wrap {
-    width: 100%;
-    margin-bottom: 12px;
-  }
+  /* ── Progress bar ── */
+  .progress-wrap { width: 100%; margin-bottom: 14px; }
 
   .progress-labels {
     display: flex;
     justify-content: space-between;
     font-size: 10px;
-    color: #444;
+    color: #383848;
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 8px;
@@ -179,90 +189,107 @@
 
   .progress-bar-bg {
     width: 100%;
-    height: 4px;
-    background: #111125;
+    height: 3px;
+    background: #0e0e22;
     border-radius: 2px;
-    overflow: hidden;
-    border: 1px solid #1a1a30;
+    overflow: visible;
+    border: 1px solid #181830;
+    position: relative;
   }
 
   .progress-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #b38a20, #f0c040);
+    background: linear-gradient(90deg, #9a7418, #f0c040);
     border-radius: 2px;
     width: 0%;
-    transition: width 0.4s ease;
+    transition: width 0.5s ease;
     position: relative;
   }
 
   .progress-bar-fill::after {
     content: '';
     position: absolute;
-    right: 0;
+    right: -3px;
     top: 50%;
     transform: translateY(-50%);
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: #f0c040;
-    box-shadow: 0 0 8px #f0c040;
+    box-shadow: 0 0 10px #f0c040, 0 0 20px rgba(240,192,64,0.4);
   }
 
+  /* ── Status text ── */
   .status-text {
     font-size: 11px;
-    color: #444;
+    color: #383848;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-top: 10px;
+    margin-top: 12px;
     min-height: 16px;
-    transition: color 0.3s;
   }
 
   .file-text {
     font-size: 10px;
-    color: #333;
-    margin-top: 4px;
+    color: #282838;
+    margin-top: 5px;
     min-height: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .dots span {
-    animation: blink 1.4s infinite;
-    opacity: 0;
+  /* ── Music control ── */
+  .music-btn {
+    position: absolute;
+    bottom: 18px;
+    right: 22px;
+    z-index: 10;
+    background: rgba(240,192,64,0.08);
+    border: 1px solid rgba(240,192,64,0.2);
+    color: #f0c040;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
   }
+  .music-btn:hover { background: rgba(240,192,64,0.15); }
+
+  /* ── Dots animation ── */
+  .dots span { animation: blink 1.4s infinite; opacity: 0; }
   .dots span:nth-child(2) { animation-delay: 0.2s; }
   .dots span:nth-child(3) { animation-delay: 0.4s; }
 
   @keyframes blink {
     0%, 80%, 100% { opacity: 0; }
-    40% { opacity: 1; }
+    40%            { opacity: 1; }
   }
-
-  .corner {
-    position: absolute;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: #222;
-    text-transform: uppercase;
-  }
-  .corner.tl { top: 16px; left: 20px; }
-  .corner.tr { top: 16px; right: 20px; }
-  .corner.bl { bottom: 16px; left: 20px; }
-  .corner.br { bottom: 16px; right: 20px; }
 </style>
 </head>
 <body>
 
+<!-- Background layers -->
 <div class="bg-grid"></div>
 <div class="bg-glow"></div>
 
+<!-- Corner labels -->
 <div class="corner tl">Bright RP</div>
 <div class="corner tr" id="corner-map">Downtown</div>
 <div class="corner bl">Owner: John John</div>
-<div class="corner br" id="corner-players">32 Slots</div>
 
+<!-- Music toggle button (bottom right, replaces static corner) -->
+<button class="music-btn" id="music-btn" onclick="toggleMusic()">&#9654; Music</button>
+
+<!-- Hidden audio element -->
+<audio id="bg-music" loop preload="auto">
+  <source src="epitome.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Main content -->
 <div class="container">
 
   <div class="logo-ring">
@@ -313,59 +340,83 @@
 </div>
 
 <script>
+  // ── Progress animation ──────────────────────────────────────
   var progress = 0;
   var targetProgress = 0;
-  var animFrame;
 
-  function animateProgress() {
+  (function tick() {
     if (progress < targetProgress) {
-      progress = Math.min(progress + 0.8, targetProgress);
+      progress = Math.min(progress + 0.7, targetProgress);
       var pct = Math.round(progress);
       document.getElementById('progress-fill').style.width = pct + '%';
       document.getElementById('progress-pct').innerText = pct + '%';
     }
-    animFrame = requestAnimationFrame(animateProgress);
-  }
-  animateProgress();
+    requestAnimationFrame(tick);
+  })();
 
-  // Fake progress for demo feel
-  var fakeSteps = [
-    { pct: 10, delay: 300, status: 'Connecting to server...' },
-    { pct: 25, delay: 800, status: 'Receiving server info...' },
-    { pct: 45, delay: 1500, status: 'Downloading resources...' },
-    { pct: 70, delay: 2500, status: 'Loading content...' },
-    { pct: 90, delay: 3500, status: 'Almost ready...' },
+  // Demo steps (replaced by real GMod callbacks when running in-game)
+  var steps = [
+    { pct: 10, delay: 400,  status: 'Connecting to server...' },
+    { pct: 28, delay: 900,  status: 'Receiving server info...' },
+    { pct: 50, delay: 1800, status: 'Downloading resources...'  },
+    { pct: 72, delay: 3000, status: 'Loading content...'        },
+    { pct: 90, delay: 4200, status: 'Almost ready...'           },
   ];
-
-  fakeSteps.forEach(function(step) {
+  steps.forEach(function(s) {
     setTimeout(function() {
-      targetProgress = step.pct;
-      document.getElementById('status-text').innerText = step.status;
-    }, step.delay);
+      targetProgress = s.pct;
+      document.getElementById('status-text').innerText = s.status;
+    }, s.delay);
   });
 
+  // ── GMod callbacks ──────────────────────────────────────────
   window.GameDetails = function(servername, serverurl, mapname, maxplayers, steamid, gamemode) {
-    if (mapname) {
-      document.getElementById('info-map').innerText = mapname;
-      document.getElementById('corner-map').innerText = mapname;
+    if (mapname)    {
+      document.getElementById('info-map').innerText    = mapname;
+      document.getElementById('corner-map').innerText  = mapname;
     }
     if (maxplayers) {
       document.getElementById('info-players').innerText = maxplayers + ' Slots';
-      document.getElementById('corner-players').innerText = maxplayers + ' Slots';
     }
   };
 
   window.SetStatusChanged = function(status) {
     document.getElementById('status-text').innerText = status;
-    if (status === 'Sending client info...') targetProgress = 60;
-    if (status === 'Receiving client info...') targetProgress = 80;
-    if (status === 'Loading...') targetProgress = 95;
+    if (status.indexOf('Sending client')    !== -1) targetProgress = 55;
+    if (status.indexOf('Receiving client')  !== -1) targetProgress = 78;
+    if (status.indexOf('Loading')           !== -1) targetProgress = 95;
   };
 
   window.DownloadingFile = function(filename) {
     document.getElementById('file-text').innerText = filename || '';
-    if (targetProgress < 85) targetProgress = Math.min(targetProgress + 1, 85);
+    if (targetProgress < 88) targetProgress = Math.min(targetProgress + 1, 88);
   };
+
+  // ── Music ───────────────────────────────────────────────────
+  var music   = document.getElementById('bg-music');
+  var playing = false;
+  music.volume = 0.35;
+
+  // GMod Chromium allows autoplay — try immediately
+  music.play().then(function() {
+    playing = true;
+    document.getElementById('music-btn').innerText = '\u23F8 Music';
+  }).catch(function() {
+    // If blocked, user can click the button
+    playing = false;
+  });
+
+  function toggleMusic() {
+    if (playing) {
+      music.pause();
+      playing = false;
+      document.getElementById('music-btn').innerText = '\u25BA Music';
+    } else {
+      music.play();
+      playing = true;
+      document.getElementById('music-btn').innerText = '\u23F8 Music';
+    }
+  }
 </script>
 </body>
 </html>
