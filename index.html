@@ -33,7 +33,7 @@
       justify-content: center;
     }
 
-    /* ── Grid Background ── */
+    /* Grid Background */
     body::before {
       content: '';
       position: fixed;
@@ -46,7 +46,7 @@
       z-index: 0;
     }
 
-    /* ── Radial glow center ── */
+    /* Radial glow */
     body::after {
       content: '';
       position: fixed;
@@ -60,7 +60,7 @@
       z-index: 0;
     }
 
-    /* ── Scanlines ── */
+    /* Scanlines */
     .scanlines {
       position: fixed;
       inset: 0;
@@ -75,7 +75,7 @@
       z-index: 1;
     }
 
-    /* ── Corner decorations ── */
+    /* Corner decorations */
     .corner {
       position: fixed;
       width: 80px;
@@ -94,7 +94,7 @@
     .corner.bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
     .corner.br { bottom: 20px; right: 20px; transform: scale(-1); }
 
-    /* ── Floating particles ── */
+    /* Floating particles */
     .particles {
       position: fixed;
       inset: 0;
@@ -108,7 +108,6 @@
       animation: float linear infinite;
       opacity: 0;
     }
-
     @keyframes float {
       0%   { transform: translateY(100vh) scale(0); opacity: 0; }
       10%  { opacity: .6; }
@@ -116,7 +115,7 @@
       100% { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
 
-    /* ── Main Card ── */
+    /* Main Card */
     .card {
       position: relative;
       z-index: 10;
@@ -131,13 +130,10 @@
         inset 0 1px 0 rgba(255,255,255,.04);
       animation: cardIn .8s cubic-bezier(.16,1,.3,1) both;
     }
-
     @keyframes cardIn {
       from { opacity: 0; transform: translateY(30px) scale(.97); }
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
-
-    /* top accent line */
     .card::before {
       content: '';
       position: absolute;
@@ -146,7 +142,7 @@
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
     }
 
-    /* ── Server badge row ── */
+    /* Status badge */
     .badge-row {
       display: flex;
       align-items: center;
@@ -173,7 +169,7 @@
       color: var(--muted);
     }
 
-    /* ── Logo area ── */
+    /* Logo area */
     .logo-wrap {
       margin-bottom: 28px;
       animation: fadeUp .6s .3s both;
@@ -195,7 +191,6 @@
       inset: 0;
       background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%);
     }
-
     .server-name {
       font-family: 'Rajdhani', sans-serif;
       font-size: 42px;
@@ -216,7 +211,7 @@
       color: var(--accent);
     }
 
-    /* ── Description ── */
+    /* Description */
     .desc {
       font-size: 14px;
       line-height: 1.7;
@@ -227,7 +222,7 @@
       animation: fadeUp .6s .4s both;
     }
 
-    /* ── Stats row ── */
+    /* Stats */
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -258,7 +253,7 @@
       margin-top: 2px;
     }
 
-    /* ── Features ── */
+    /* Features */
     .features {
       list-style: none;
       display: grid;
@@ -281,77 +276,109 @@
       flex-shrink: 0;
     }
 
-    /* ── CTA Button ── */
-    .cta-wrap {
-      animation: fadeUp .6s .55s both;
-    }
-    .cta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      width: 100%;
-      padding: 16px 24px;
-      background: var(--discord);
-      color: #fff;
-      text-decoration: none;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      border-radius: 3px;
-      border: 1px solid rgba(255,255,255,.1);
-      transition: background .2s, box-shadow .2s, transform .15s;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,.08) 0%, transparent 60%);
-    }
-    .cta:hover {
-      background: var(--discord-hover);
-      box-shadow: 0 0 28px rgba(88,101,242,.5);
-      transform: translateY(-1px);
-    }
-    .cta:active { transform: translateY(0); }
-
-    .discord-icon {
-      width: 22px; height: 22px;
-      fill: white;
-      flex-shrink: 0;
-    }
-
-    /* ── Link row ── */
-    .link-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      justify-content: center;
-      animation: fadeUp .6s .6s both;
-    }
-    .link-label {
-      font-size: 11px;
-      letter-spacing: .1em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-    .link-url {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 13px;
-      color: #475569;
-      letter-spacing: .03em;
-    }
-
-    /* ── Divider ── */
+    /* Divider */
     .divider {
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--border), transparent);
       margin: 28px 0;
+    }
+
+    /* Discord invite box */
+    .discord-box {
+      animation: fadeUp .6s .55s both;
+      background: #080c18;
+      border: 1px solid var(--discord);
+      border-radius: 6px;
+      padding: 22px 20px;
+      text-align: center;
+      box-shadow: 0 0 24px rgba(88,101,242,.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .discord-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--discord), transparent);
+    }
+
+    .discord-logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .discord-logo-row svg {
+      width: 26px; height: 26px;
+      fill: var(--discord);
+      filter: drop-shadow(0 0 6px rgba(88,101,242,.6));
+    }
+    .discord-logo-row span {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .invite-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .invite-link {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .04em;
+      background: linear-gradient(135deg, #fff 40%, var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 20px;
+      background: var(--discord);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s, box-shadow .2s, transform .15s;
+    }
+    .copy-btn:hover {
+      background: var(--discord-hover);
+      box-shadow: 0 0 18px rgba(88,101,242,.45);
+      transform: translateY(-1px);
+    }
+    .copy-btn:active { transform: translateY(0); }
+    .copy-btn.copied {
+      background: #16a34a;
+      box-shadow: 0 0 18px rgba(22,163,74,.4);
+    }
+
+    .type-hint {
+      margin-top: 12px;
+      font-size: 11px;
+      color: #334155;
+      letter-spacing: .05em;
     }
 
     @keyframes fadeUp {
@@ -362,18 +389,15 @@
 </head>
 <body>
 
-  <!-- Decorative corners -->
   <div class="corner tl"></div>
   <div class="corner tr"></div>
   <div class="corner bl"></div>
   <div class="corner br"></div>
-
   <div class="scanlines"></div>
-
-  <!-- Floating particles -->
   <div class="particles" id="particles"></div>
 
   <div class="card">
+
     <!-- Status badge -->
     <div class="badge-row">
       <div class="badge-dot"></div>
@@ -420,37 +444,68 @@
 
     <div class="divider"></div>
 
-    <!-- CTA -->
-    <div class="cta-wrap">
-      <a class="cta" href="https://discord.gg/mUvbAEBR3W" target="_blank" rel="noopener">
-        <svg class="discord-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <!-- Discord invite box -->
+    <div class="discord-box">
+      <div class="discord-logo-row">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026 13.83 13.83 0 0 0 1.226-1.963.074.074 0 0 0-.041-.104 13.175 13.175 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028ZM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38Zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38Z"/>
         </svg>
-        Join Our Discord
-      </a>
-      <div class="link-row">
-        <span class="link-label">Invite:</span>
-        <span class="link-url">discord.gg/mUvbAEBR3W</span>
+        <span>Join our Discord</span>
       </div>
+
+      <div class="invite-label">Type this into your browser</div>
+      <span class="invite-link">discord.gg/mUvbAEBR3W</span>
+
+      <br/>
+      <button class="copy-btn" id="copyBtn" onclick="copyLink()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        <span id="copyText">Copy Link</span>
+      </button>
+
+      <div class="type-hint">⚠ Links can't be clicked inside the game — type or copy it into your browser</div>
     </div>
+
   </div>
 
   <script>
-    // Generate floating particles
+    // Particles
     const container = document.getElementById('particles');
     for (let i = 0; i < 20; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
       const size = Math.random() * 3 + 1;
-      p.style.cssText = `
-        width: ${size}px;
-        height: ${size}px;
-        left: ${Math.random() * 100}%;
-        animation-duration: ${Math.random() * 12 + 8}s;
-        animation-delay: ${Math.random() * 10}s;
-        opacity: 0;
-      `;
+      p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*12+8}s;animation-delay:${Math.random()*10}s;opacity:0;`;
       container.appendChild(p);
+    }
+
+    // Copy button
+    function copyLink() {
+      const btn = document.getElementById('copyBtn');
+      const txt = document.getElementById('copyText');
+      navigator.clipboard.writeText('https://discord.gg/mUvbAEBR3W').then(() => {
+        btn.classList.add('copied');
+        txt.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          txt.textContent = 'Copy Link';
+        }, 2000);
+      }).catch(() => {
+        // Fallback for GMod browser
+        const el = document.createElement('textarea');
+        el.value = 'https://discord.gg/mUvbAEBR3W';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        btn.classList.add('copied');
+        txt.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          txt.textContent = 'Copy Link';
+        }, 2000);
+      });
     }
   </script>
 </body>
